@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/meshes/building-03.glb" type="PackedScene" id=1]
-[ext_resource path="res://assets/materials/black-grid.tres" type="Material" id=2]
-[ext_resource path="res://assets/materials/purple-grid.tres" type="Material" id=3]
+[ext_resource path="res://assets/old/black-grid.tres" type="Material" id=2]
+[ext_resource path="res://assets/old/purple-grid.tres" type="Material" id=3]
 
 [node name="building-03" instance=ExtResource( 1 )]
 

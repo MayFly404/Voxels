@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/meshes/house1/house.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Maps/map01-environment.tres" type="Environment" id=2]
+[ext_resource path="res://Maps/scenes/tube.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Maps/scenes/corridor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/scenes/HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Utils/scenes/SpawnPoint.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Maps/scripts/Map.gd" type="Script" id=8]
@@ -29,26 +30,142 @@ far = 250.0
 
 [node name="Level" type="Node" parent="."]
 
-[node name="BasicStructure" type="Node" parent="Level"]
+[node name="floor" parent="Level" instance=ExtResource( 12 )]
 
-[node name="floor" parent="Level/BasicStructure" instance=ExtResource( 12 )]
-transform = Transform( 2.39702, 0, 0, 0, 1, 0, 0, 0, 1.50259, 24.4415, -6.55679, -0.0705986 )
+[node name="floor2" parent="Level" instance=ExtResource( 12 )]
+transform = Transform( -4.5897e-08, 4.37114e-08, 1, 0.6, -4.37114e-08, 7.64949e-08, 2.62268e-08, 1, -4.37114e-08, 0, 37, 59 )
 
-[node name="House1" parent="Level/BasicStructure" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 2.19856, 0, 0, 0, 1.52946, 0, -5.83859, 0 )
+[node name="floor3" parent="Level" instance=ExtResource( 12 )]
+transform = Transform( -4.5897e-08, 4.37114e-08, 1, 0.6, -4.37114e-08, 7.64949e-08, 2.62268e-08, 1, -4.37114e-08, 0, 37, -59 )
 
-[node name="House2" parent="Level/BasicStructure" instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 2.19856, 0, 1.3371e-07, 0, -1.52946, 76.7783, -5.83859, 0 )
+[node name="floor4" parent="Level" instance=ExtResource( 12 )]
+transform = Transform( 2.62268e-08, 1, -8.74228e-08, 0.6, -4.37114e-08, 7.64949e-08, 4.5897e-08, -8.74228e-08, -1, -59.25, 37, 0 )
+
+[node name="floor5" parent="Level" instance=ExtResource( 12 )]
+transform = Transform( 2.62268e-08, 1, -8.74228e-08, 0.6, -4.37114e-08, 7.64949e-08, 4.5897e-08, -8.74228e-08, -1, 61, 37, 0 )
+
+[node name="corridor" parent="Level" instance=ExtResource( 4 )]
+
+[node name="tube" parent="Level/corridor" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 0.5, 0 )
+
+[node name="tube2" parent="Level/corridor" instance=ExtResource( 3 )]
+transform = Transform( 0.4, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0.5, 0 )
+
+[node name="tube3" parent="Level/corridor" instance=ExtResource( 3 )]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -30.9784, 10.0625, 0 )
+
+[node name="tube4" parent="Level/corridor" instance=ExtResource( 3 )]
+transform = Transform( 0.34641, 0.5, 0, -0.2, 0.866025, 0, 0, 0, 1, -17.7716, 2.4375, 0 )
+
+[node name="tube5" parent="Level/corridor" instance=ExtResource( 3 )]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -57.7284, 25.3125, 0 )
+
+[node name="tube6" parent="Level/corridor" instance=ExtResource( 3 )]
+transform = Transform( 0.34641, 0.5, 0, -0.2, 0.866025, 0, 0, 0, 1, -44.5216, 17.6875, 0 )
+
+[node name="corridor2" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 0, 0 )
+
+[node name="tube" parent="Level/corridor2" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.625, 0.5, -21.375 )
+
+[node name="tube2" parent="Level/corridor2" instance=ExtResource( 3 )]
+transform = Transform( -1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, 0.625, 0.5, -36.625 )
+
+[node name="corridor3" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 51.25, 0, -51 )
+
+[node name="tube" parent="Level/corridor3" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.125008, 0.5, -21.375 )
+
+[node name="tube2" parent="Level/corridor3" instance=ExtResource( 3 )]
+transform = Transform( -1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, 0.125008, 0.5, -36.625 )
+
+[node name="corridor4" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 0, -51 )
+
+[node name="tube" parent="Level/corridor4" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.125008, 0.5, -21.375 )
+
+[node name="tube2" parent="Level/corridor4" instance=ExtResource( 3 )]
+transform = Transform( -1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, 0.125008, 0.5, -36.625 )
+
+[node name="corridor7" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 0, -51 )
+
+[node name="tube" parent="Level/corridor7" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.125008, 0.5, -21.375 )
+
+[node name="tube2" parent="Level/corridor7" instance=ExtResource( 3 )]
+transform = Transform( -1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, 0.125008, 0.5, -36.625 )
+
+[node name="corridor8" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -51.25, 0, -51 )
+
+[node name="tube" parent="Level/corridor8" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.125008, 0.5, -21.375 )
+
+[node name="tube2" parent="Level/corridor8" instance=ExtResource( 3 )]
+transform = Transform( -1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, 0.125008, 0.5, -36.625 )
+
+[node name="corridor9" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -51.25, 0, 0.250004 )
+
+[node name="tube" parent="Level/corridor9" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.125008, 0.5, -21.375 )
+
+[node name="tube3" parent="Level/corridor9" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.375, 0.5, -1.625 )
+
+[node name="tube4" parent="Level/corridor9" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, 0.5, 9.875 )
+
+[node name="tube2" parent="Level/corridor9" instance=ExtResource( 3 )]
+transform = Transform( -1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, 0.125008, 0.5, -36.625 )
+
+[node name="corridor5" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( 1.29645e-07, -0.258819, -0.965926, 1.13133e-08, 0.965926, -0.258819, 1, 2.26267e-08, 1.28155e-07, 1.25, 0.75, 52.25 )
+
+[node name="tube" parent="Level/corridor5" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.125008, 0.5, -21.375 )
+
+[node name="tube2" parent="Level/corridor5" instance=ExtResource( 3 )]
+transform = Transform( -1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, 0.125008, 0.5, -36.625 )
+
+[node name="tube3" parent="Level/corridor5" instance=ExtResource( 3 )]
+transform = Transform( 1, -1.09277e-09, -1.28207e-08, -1.09279e-09, 1.2067, 0.0249999, -1.28206e-08, 0.0249999, 1.2933, -30, -0.772113, 0.0820381 )
+
+[node name="tube4" parent="Level/corridor5" instance=ExtResource( 3 )]
+transform = Transform( 0.4, -1.09277e-09, -1.28207e-08, -4.37113e-10, 1.2067, 0.0249999, -5.12823e-09, 0.0249999, 1.2933, -14.75, -0.772113, 0.0820387 )
+
+[node name="tube5" parent="Level/corridor5" instance=ExtResource( 3 )]
+transform = Transform( -6.40007e-08, 0.336465, 1.25571, 0.888653, 0.300001, -0.0803846, -0.238114, 1.11962, -0.300001, -2.5, 1.94549, 10.2243 )
+
+[node name="corridor6" parent="Level" instance=ExtResource( 4 )]
+transform = Transform( -0.12941, -0.242362, 0.961516, 0.224144, 0.937422, 0.266457, -0.965926, 0.25, -0.0669874, 50.25, 13.75, 50.25 )
+
+[node name="tube" parent="Level/corridor6" instance=ExtResource( 3 )]
+transform = Transform( -0.039011, -0.997346, 0.0614674, 0.0361705, -0.0628834, -0.997365, 0.998584, -0.036685, 0.0385276, 5.70485, 6.3774, -13.9944 )
+
+[node name="tube2" parent="Level/corridor6" instance=ExtResource( 3 )]
+transform = Transform( 0.991736, -0.0831445, 0.0976965, 0.0387961, -0.531509, -0.846163, 0.12228, 0.842962, -0.523891, 21.0724, 7.76984, -2.73488 )
+
+[node name="tube3" parent="Level/corridor6" instance=ExtResource( 3 )]
+transform = Transform( 0.892687, -0.241854, -0.38028, -0.450443, -0.505722, -0.735761, -0.0143694, 0.828101, -0.560394, 40.63, 4.76777, -1.11934 )
+
+[node name="tube4" parent="Level/corridor6" instance=ExtResource( 3 )]
+transform = Transform( 0.892687, -0.241854, -0.38028, -0.450443, -0.505722, -0.735761, -0.0143693, 0.828101, -0.560394, 59.5199, -4.39386, -1.6663 )
+
+[node name="tube5" parent="Level/corridor6" instance=ExtResource( 3 )]
+transform = Transform( 1.16755, -0.223654, -0.342542, -0.719145, -0.491417, -0.674693, -0.0451047, 0.834156, -0.539922, 78.8131, -14.8622, -1.70833 )
 
 [node name="Players" type="Node" parent="."]
 
 [node name="SpawnPoints" type="Node" parent="."]
 
 [node name="SP1" parent="SpawnPoints" instance=ExtResource( 7 )]
-transform = Transform( 0.688013, 0, -0.725698, 0, 1, 0, 0.725698, 0, 0.688013, 0, 1, 0 )
-
-[node name="SP2" parent="SpawnPoints" instance=ExtResource( 7 )]
-transform = Transform( 0.688013, 0, -0.725698, 0, 1, 0, 0.725698, 0, 0.688013, 31.5919, 1, 0 )
+transform = Transform( 0.206404, 0, -0.217709, 0, 1, 0, 0.14514, 0, 0.137603, 50.5, 3, 4.75 )
 
 [node name="DeathArea" type="Area" parent="."]
 transform = Transform( 999, 0, 0, 0, 1, 0, 0, 0, 999, 0, -14, 0 )
@@ -62,14 +179,6 @@ shape = SubResource( 1 )
 environment = ExtResource( 2 )
 
 [node name="Lights" type="Node" parent="."]
-
-[node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
-transform = Transform( -0.724388, 0.470296, -0.504066, 0, 0.731175, 0.68219, 0.689392, 0.494171, -0.529655, 0, 26.2461, -30.6581 )
-light_color = Color( 0.94902, 0.854902, 0.780392, 1 )
-light_energy = 10.0
-light_indirect_energy = 16.0
-light_bake_mode = 0
-shadow_enabled = true
 
 [node name="FadeInTween" type="Tween" parent="."]
 
