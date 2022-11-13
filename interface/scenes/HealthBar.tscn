@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://interface/scripts/HealthBar.gd" type="Script" id=1]
+
+[node name="HealthBar" type="MarginContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -950.0
+margin_top = 1050.0
+margin_right = -15.0
+margin_bottom = 1082.0
+rect_min_size = Vector2( 600, 30 )
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_right = 935.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 500, 20 )
+color = Color( 0.921569, 0.898039, 0.898039, 1 )
+
+[node name="LifeBar" type="ColorRect" parent="."]
+margin_right = 935.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 20 )
+color = Color( 0.733333, 0.945098, 0.572549, 1 )
+
+[node name="Tween" type="Tween" parent="."]
+playback_speed = 0.5
+playback/speed = 0.5
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

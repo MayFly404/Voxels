@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://interface/scripts/ChatEntry.gd" type="Script" id=1]
+[ext_resource path="res://interface/resources/HUDFont.tres" type="DynamicFont" id=2]
+
+[node name="ChatEntry" type="RichTextLabel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -12.5
+margin_right = 500.0
+margin_bottom = 2.5
+rect_min_size = Vector2( 500, 15 )
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bensound-theelevatorbossanova.ogg-7ca4ccd5b4cac6242f9d84831cb1b54b.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/bensound-theelevatorbossanova.ogg"
+dest_files=[ "res://.import/bensound-theelevatorbossanova.ogg-7ca4ccd5b4cac6242f9d84831cb1b54b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

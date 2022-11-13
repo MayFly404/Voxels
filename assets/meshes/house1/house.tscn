@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/meshes/house1/wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Maps/scenes/120-floor.tscn" type="PackedScene" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="First Floor" type="Spatial" parent="."]
+
+[node name="wall" parent="First Floor" instance=ExtResource( 1 )]
+
+[node name="wall10" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77986, 0 )
+
+[node name="wall11" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.297409, 0, 0, 0, 1, 0, 8.82979, 0 )
+
+[node name="wall2" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.0258 )
+
+[node name="wall13" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.44047, 0, 5.23424, -11.8457 )
+
+[node name="wall3" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.257573, 0, 0, 0, 0.629389, 0, 3.84041, -7.18148 )
+
+[node name="wall12" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.61525, 0, 0, 0, 0.316092, 0, 6.30608, -3.45477 )
+
+[node name="wall18" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.61525, 0, 0, 0, 0.316092, 0, 6.30608, 3.29791 )
+
+[node name="wall4" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( -1.00209e-07, 0, 2.29251, 0, 1, 0, -1, 0, -4.37114e-08, -11.3634, 0, -18.8197 )
+
+[node name="wall9" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( -1.00209e-07, 0, 2.29251, 0, 1, 0, -1, 0, -4.37114e-08, -11.3634, 5.14719, -18.8197 )
+
+[node name="wall5" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( -1.00209e-07, 0, 2.29251, 0, 1, 0, -1, 0, -4.37114e-08, -11.3634, 0, 4.83404 )
+
+[node name="wall14" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( -5.9462e-08, 0, 1.36033, 0, 1, 0, -1, 0, -4.37114e-08, -15.9214, 0, -1.84819 )
+
+[node name="wall8" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( -1.00209e-07, 0, 2.29251, 0, 1, 0, -1, 0, -4.37114e-08, -11.3634, 5.16622, 4.83404 )
+
+[node name="wall6" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.87778, -22.722, 0, -9.2942 )
+
+[node name="wall16" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.36923, -17.7831, 5.14463, -1.98937 )
+
+[node name="wall17" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( -5.84768e-08, 0, 1.83174, 0, 1, 0, -1, 0, -5.98508e-08, -9.34537, 5.14463, -13.5148 )
+
+[node name="wall7" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.34109, -22.722, 5.17736, -12.0647 )
+
+[node name="wall15" parent="First Floor" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.381291, -22.722, 5.17736, 2.90972 )
+
+[node name="floor" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( 0.02142, 0, 0, 0, 0.113352, 0, 0, 0, 0.028, -7.2, 0, -17.096 )
+
+[node name="floor2" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( 0.02142, 0, 0, 0, 0.113352, 0, 0, 0, 0.028, -10.6, 1, -17.096 )
+
+[node name="floor3" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( 0.02142, 0, 0, 0, 0.113352, 0, 0, 0, 0.028, -14, 2, -17.096 )
+
+[node name="floor4" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( 0.02142, 0, 0, 0, 0.113352, 0, 0, 0, 0.028, -17.4, 3, -17.096 )
+
+[node name="floor5" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( 0.02142, 0, 0, 0, 0.113352, 0, 0, 0, 0.028, -20.8, 4, -17.096 )
+
+[node name="floor8" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( -9.36298e-10, 0, 0.028, 0, 0.113352, 0, -0.02142, 0, -1.22392e-09, -24.3803, 1, -16.896 )
+
+[node name="floor9" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( -9.36298e-10, 0, 0.028, 0, 0.113352, 0, -0.02142, 0, -1.22392e-09, -24.3803, 2, -13.496 )
+
+[node name="floor10" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( -9.36298e-10, 0, 0.028, 0, 0.113352, 0, -0.02142, 0, -1.22392e-09, -24.3803, 3, -10.096 )
+
+[node name="floor11" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( -9.36298e-10, 0, 0.028, 0, 0.113352, 0, -0.02142, 0, -1.22392e-09, -24.3803, 4, -6.696 )
+
+[node name="floor12" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( -9.36298e-10, 0, 0.028, 0, 0.113352, 0, -0.02142, 0, -1.22392e-09, -24.3803, 5, -3.29601 )
+
+[node name="floor6" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( 0.189203, 0, 0, 0, 0.121764, 0, 0, 0, 0.153808, -11.4091, 5, -4.44865 )
+
+[node name="floor7" parent="First Floor" instance=ExtResource( 3 )]
+transform = Transform( 0.189203, 0, 0, 0, 0.121764, 0, 0, 0, 0.195556, -11.5876, 10.327, -6.99405 )

@@ -1,0 +1,286 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Actors/Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Actors/Scripts/PlayerController.gd" type="Script" id=2]
+[ext_resource path="res://Actors/Scripts/PlayerFSM.gd" type="Script" id=3]
+[ext_resource path="res://Actors/Scripts/States/Idle.gd" type="Script" id=4]
+[ext_resource path="res://Actors/Scripts/States/Running.gd" type="Script" id=5]
+[ext_resource path="res://Actors/Scripts/States/Jumping.gd" type="Script" id=6]
+[ext_resource path="res://Actors/Scripts/States/Falling.gd" type="Script" id=7]
+[ext_resource path="res://assets/textures/crosshair.png" type="Texture" id=8]
+[ext_resource path="res://Actors/Scripts/States/Dead.gd" type="Script" id=9]
+[ext_resource path="res://Actors/Scripts/States/Sprinting.gd" type="Script" id=10]
+[ext_resource path="res://Utils/scripts/EquipManagement.gd" type="Script" id=11]
+[ext_resource path="res://Actors/Scripts/States/Menu.gd" type="Script" id=12]
+[ext_resource path="res://interface/scenes/PlayerHUDSprite3D.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Utils/scenes/HitMarker.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/materials/player-yellow.tres" type="Material" id=15]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = 0.025
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+next_pass = SubResource( 1 )
+params_diffuse_mode = 4
+params_specular_mode = 3
+albedo_color = Color( 0.956863, 0.945098, 0.0823529, 1 )
+
+[sub_resource type="CapsuleMesh" id=3]
+material = SubResource( 2 )
+mid_height = 3.0
+radial_segments = 16
+
+[sub_resource type="CapsuleShape" id=4]
+height = 3.0
+
+[sub_resource type="SphereShape" id=5]
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.8, 1.5, 0.3 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.5795, 0.356077, 0.152413 )
+
+[sub_resource type="Animation" id=8]
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1.46409, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.32 ), Vector3( 0, 0.01, -0.32 ), Vector3( 0, 0, -0.32 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1.46409, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.32 ), Vector3( 0, 0.03, -0.32 ), Vector3( 0, 0, -0.32 ) ]
+}
+
+[node name="Player" type="KinematicBody" groups=["Player"]]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+collision_mask = 3
+script = ExtResource( 1 )
+HIT_COLOR = Color( 0.611765, 0.117647, 0.117647, 0.160784 )
+MELEE_COLOR = Color( 0.972549, 0.917647, 0.917647, 0.270588 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.50113, 0.488986 )
+mesh = SubResource( 3 )
+material/0 = ExtResource( 15 )
+
+[node name="Body" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 2.50379, 0.488986 )
+shape = SubResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HeadCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.08547, 0.488986 )
+shape = SubResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CameraCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 2.5, -0.8 )
+shape = SubResource( 6 )
+
+[node name="ButtCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36479e-07, 1.06875, 1.33954 )
+shape = SubResource( 7 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77523e-08, 4.45599, -0.412832 )
+
+[node name="Camera" type="Camera" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.32 )
+cull_mask = 1048573
+far = 200.0
+
+[node name="AimCast" type="RayCast" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.41768 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+collision_mask = 3
+
+[node name="Container" type="CenterContainer" parent="Head/Camera"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crosshair" type="TextureRect" parent="Head/Camera/Container"]
+visible = false
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 960.0
+margin_bottom = 540.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SniperOverlay" type="TextureRect" parent="Head/Camera/Container"]
+visible = false
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 960.0
+margin_bottom = 540.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 4
+
+[node name="CameraAnimPlayer" type="AnimationPlayer" parent="Head/Camera"]
+anims/ads-headbob = SubResource( 8 )
+anims/headbob = SubResource( 9 )
+
+[node name="Hand" type="Spatial" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.301, -1.737 )
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HandLoc" type="Spatial" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.301, -1.737 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Head"]
+transform = Transform( 0.547297, 0, 2.01502e-08, 0, 0.502366, 0, 2.01502e-08, 0, 0.485456, -2.67557e-08, -0.708324, 0.0821127 )
+
+[node name="GroundCheck" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.296149, 0 )
+enabled = true
+cast_to = Vector3( 0, -1.5, 0 )
+collision_mask = 2
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Sprinting" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="Menu" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="PrimaryHolster" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.725548, 3.51813, 1.31264 )
+
+[node name="SecondaryHolster" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.952873, 1.93413, -0.254 )
+
+[node name="MeleeHolster" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06051, 2.23786, 0.264885 )
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.18127, 0 )
+unit_db = 2.0
+max_distance = 100.0
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0348575, 3.34194, -1.02687 )
+unit_db = 3.0
+max_distance = 100.0
+
+[node name="PlayerHUD" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.40624, 0.521707 )
+visible = false
+
+[node name="FloatDmgContainer" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62921e-07, 5.5, 0.5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+grow_horizontal = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponView" type="TextureRect" parent="CenterContainer"]
+visible = false
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 960.0
+margin_bottom = 540.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="HitFeedback" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitMarker" parent="CanvasLayer" instance=ExtResource( 14 )]
+
+[connection signal="tree_exiting" from="." to="." method="_on_Player_tree_exiting"]

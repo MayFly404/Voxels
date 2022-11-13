@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Actors/Scenes/weapons/models/knife-model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Actors/Scripts/MeleeWeapon.gd" type="Script" id=2]
+[ext_resource path="res://assets/animations/knife-attack.tres" type="Animation" id=3]
+[ext_resource path="res://assets/audio/knife-slash.wav" type="AudioStream" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.53259, 0.901491, 1.43593 )
+
+[node name="MeleeWeapon" type="Spatial"]
+transform = Transform( -0.537901, 0.593958, 0.598227, -0.683769, 0.107663, -0.721712, -0.493073, -0.797259, 0.348218, -1.538, -0.489, -0.498 )
+script = ExtResource( 2 )
+COOLDOWN = 0.3
+MIN_X_RECOIL = -2.0
+MAX_X_RECOIL = -5.0
+MIN_Y_RECOIL = -1.0
+
+[node name="knife" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 2.83933e-07, 0, 2.83933e-07, 4.24782, 0, 0, -3.81165e-21, 1, 0, 0, 0 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, -4.91738e-07, 4.47035e-07, 1, -4.76837e-07, -1.19209e-07, 1.49012e-07, 1, 2.38419e-07, 0.197892, 0.245064 )
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 5.20604e-08, 0, 3.1827e-07, 1.5955, -2.83957e-07, -4.9738e-14, -8.87368e-08, 1, 0, 0.959419, 0 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( -0.873705, 0.486457, 3.25718e-08, -0.486457, -0.873705, -7.02154e-09, 2.50424e-08, -2.19795e-08, 1, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, -2, 0 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_size = 2.0
+max_db = 6.0
+max_distance = 30.0
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
